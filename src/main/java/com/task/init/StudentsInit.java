@@ -30,7 +30,7 @@ public final class StudentsInit {
                 .withGroup("IP-64")
                 .build(vovaTsarukperson);
         Person ivanZaichenkoPerson = new Person.PersonBuilder()
-                .withId(1)
+                .withId(2)
                 .withName("Ivan")
                 .withSurname("Zaichenko")
                 .withPatronymic("Volodymyrovych")
@@ -46,7 +46,7 @@ public final class StudentsInit {
                 .build(ivanZaichenkoPerson);
 
         Person vasylZaichenkoPerson = new Person.PersonBuilder()
-                .withId(1)
+                .withId(3)
                 .withName("Vasyl")
                 .withSurname("Zaichenko")
                 .withPatronymic("Volodymyrovych")
@@ -56,7 +56,7 @@ public final class StudentsInit {
         Student vasylZaichenkoStudent = new Student.StudentBuilder()
                 .withAddress("Kiev")
                 .withTel("0932222222")
-                .withFaculty("FICT")
+                .withFaculty("IPSA")
                 .withCourse(4)
                 .withGroup("IP-62")
                 .build(vasylZaichenkoPerson);
