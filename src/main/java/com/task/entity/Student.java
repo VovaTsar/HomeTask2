@@ -2,7 +2,7 @@ package com.task.entity;
 
 /**
  * id, Фамилия, Имя, Отчество, Дата рождения, Адрес, Телефон,
- * Факультет, Курс, Группа.
+ * Факультет, Курс, Группа.Scls
  */
 public class Student extends Person {
     private String address;
