@@ -58,7 +58,7 @@ public final class StudentsInit {
                 .withTel("0932222222")
                 .withFaculty("FICT")
                 .withCourse(4)
-                .withGroup("IP-64")
+                .withGroup("IP-62")
                 .build(vasylZaichenkoPerson);
 
         List<Student> students = new ArrayList<>();

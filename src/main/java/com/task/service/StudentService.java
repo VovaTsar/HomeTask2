@@ -47,6 +47,16 @@ public class StudentService {
         }
         return findStudentsByYear;
     }
+    public ArrayList<Student> findByGroup(String group, List<Student> students) {
+        ArrayList<Student> findStudentsByGroup = new ArrayList<>();
+        for (Student student : students
+        ) {
+            if (group.equals(student.getGroup())) {
+                findStudentsByGroup.add(student);
+            }
+        }
+        return findStudentsByGroup;
+    }
 
 
 }

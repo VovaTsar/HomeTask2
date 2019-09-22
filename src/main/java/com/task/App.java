@@ -20,6 +20,9 @@ public class App {
 
         foundStudents = studentService.findByYear(1990, students);
         studentService.printStudents("Students find by year", foundStudents);
+
+        foundStudents = studentService.findByGroup("IP-64", students);
+        studentService.printStudents("Students find by group", foundStudents);
     }
 }
 
