@@ -23,6 +23,9 @@ public class App {
 
         foundStudents = studentService.findByGroup("IP-64", students);
         studentService.printStudents("Students find by group", foundStudents);
+
+        foundStudents = studentService.findByFacultyAndCourse("FICT",4, students);
+        studentService.printStudents("Students find by faculty and course", foundStudents);
     }
 }
 

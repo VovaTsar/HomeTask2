@@ -41,7 +41,7 @@ public final class StudentsInit {
                 .withAddress("Kiev")
                 .withTel("09311111111")
                 .withFaculty("FICT")
-                .withCourse(4)
+                .withCourse(2)
                 .withGroup("IP-64")
                 .build(ivanZaichenkoPerson);
 
