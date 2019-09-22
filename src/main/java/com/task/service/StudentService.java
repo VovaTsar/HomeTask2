@@ -21,7 +21,7 @@ public class StudentService {
     }
 
     public void printStudents(String info, List<Student> students) {
-        System.out.println(info);
+        System.out.println(info + ":");
         for (Student student : students) {
             System.out.println(student);
 
@@ -36,6 +36,16 @@ public class StudentService {
             }
         }
         return findStudentsByFaculty;
+    }
+
+    public ArrayList<Student> findByYear(int year, List<Student> students) {
+        ArrayList<Student> findStudentsByYear = new ArrayList<>();
+        for (Student student : students) {
+            if (year < student.getBirthday().getYear()) {
+                findStudentsByYear.add(student);
+            }
+        }
+        return findStudentsByYear;
     }
 
 

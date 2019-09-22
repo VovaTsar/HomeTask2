@@ -18,6 +18,8 @@ public class App {
         foundStudents = studentService.findByFaculty("FICT", students);
         studentService.printStudents("Students find by faculty", foundStudents);
 
+        foundStudents = studentService.findByYear(1990, students);
+        studentService.printStudents("Students find by year", foundStudents);
     }
 }
 

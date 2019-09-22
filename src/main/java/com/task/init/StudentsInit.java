@@ -34,7 +34,7 @@ public final class StudentsInit {
                 .withName("Ivan")
                 .withSurname("Zaichenko")
                 .withPatronymic("Volodymyrovych")
-                .withBirthday(LocalDate.of(1999, 1, 13))
+                .withBirthday(LocalDate.of(1980, 1, 13))
                 .build();
 
         Student ivanZaichenkoStudent = new Student.StudentBuilder()
