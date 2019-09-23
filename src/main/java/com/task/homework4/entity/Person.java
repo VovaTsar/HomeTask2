@@ -1,4 +1,4 @@
-package com.task.entity;
+package com.task.homework4.entity;
 
 import java.time.LocalDate;
 
