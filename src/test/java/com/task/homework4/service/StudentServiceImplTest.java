@@ -1,8 +1,7 @@
-package com.task.service;
+package com.task.homework4.service;
 
-import com.task.entity.Student;
-import com.task.init.StudentsInit;
-import org.junit.Before;
+import com.task.homework4.entity.Student;
+import com.task.homework4.init.StudentsInit;
 import org.junit.Test;
 
 import java.util.List;

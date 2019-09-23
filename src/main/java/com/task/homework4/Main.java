@@ -1,15 +1,12 @@
-package com.task;
+package com.task.homework4;
 
-import com.task.entity.Student;
-import com.task.init.StudentsInit;
-import com.task.service.StudentServiceImpl;
+import com.task.homework4.entity.Student;
+import com.task.homework4.init.StudentsInit;
+import com.task.homework4.service.StudentServiceImpl;
 
 import java.util.List;
 
-/**
- * Hello world!
- */
-public class App {
+public class Main {
     public static void main(String[] args) {
         List<Student> students = StudentsInit.defaultInitStudent();
         List<Student> foundStudents;
@@ -28,4 +25,3 @@ public class App {
         studentServiceImpl.printStudents("Students find by faculty and course", foundStudents);
     }
 }
-

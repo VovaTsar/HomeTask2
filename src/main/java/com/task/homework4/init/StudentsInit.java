@@ -1,7 +1,7 @@
-package com.task.init;
+package com.task.homework4.init;
 
-import com.task.entity.Person;
-import com.task.entity.Student;
+import com.task.homework4.entity.Person;
+import com.task.homework4.entity.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

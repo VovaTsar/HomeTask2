@@ -1,7 +1,7 @@
-package com.task.service;
+package com.task.homework4.service;
 
 
-import com.task.entity.Student;
+import com.task.homework4.entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;
