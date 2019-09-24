@@ -1,14 +1,14 @@
 package com.task.homework4;
 
-import com.task.homework4.entity.Student;
-import com.task.homework4.init.StudentsInit;
+import com.task.homework4.domain.Student;
+import com.task.homework4.init.StudentInit;
 import com.task.homework4.service.StudentServiceImpl;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Student> students = StudentsInit.defaultInitStudent();
+        List<Student> students = StudentInit.defaultInitStudent();
         List<Student> foundStudents;
 
         StudentServiceImpl studentServiceImpl = StudentServiceImpl.getInstance();

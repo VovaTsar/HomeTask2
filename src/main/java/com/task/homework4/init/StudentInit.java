@@ -1,16 +1,16 @@
 package com.task.homework4.init;
 
-import com.task.homework4.entity.Person;
-import com.task.homework4.entity.Student;
+import com.task.homework4.domain.Person;
+import com.task.homework4.domain.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class StudentsInit {
+public final class StudentInit {
 
 
-    private StudentsInit() {
+    private StudentInit() {
     }
 
     public static List<Student> defaultInitStudent() {

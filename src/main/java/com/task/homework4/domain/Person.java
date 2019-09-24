@@ -1,4 +1,4 @@
-package com.task.homework4.entity;
+package com.task.homework4.domain;
 
 import java.time.LocalDate;
 
@@ -31,7 +31,7 @@ public class Person {
 
 
 
-    Person(PersonBuilder personBuilder){
+    private Person(PersonBuilder personBuilder){
         this.id=personBuilder.id;
         this.name=personBuilder.name;
         this.surname=personBuilder.surname;
@@ -39,12 +39,12 @@ public class Person {
         this.birthday=personBuilder.birthday;
     }
 
-    public Person(Person person) {
+    protected Person(Person person) {
         this.id=person.id;
         this.name=person.name;
         this.surname=person.surname;
         this.patronymic=person.patronymic;
-        this.birthday=person.birthday;;
+        this.birthday=person.birthday;
     }
 
     @Override
