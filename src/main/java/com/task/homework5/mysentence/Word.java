@@ -2,7 +2,7 @@ package com.task.homework5.mysentence;
 
 public class Word {
     private Symbol[] symbs;
-    private Punctuation punctuation = null;
+    private Punctuation punctuation ;
 
     public Word(String word) {
         this.symbs = new Symbol[0];

@@ -1,4 +1,4 @@
-package com.task.homework4.entity;
+package com.task.homework4.domain;
 
 /**
  * id, Фамилия, Имя, Отчество, Дата рождения, Адрес, Телефон,
