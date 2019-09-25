@@ -7,7 +7,7 @@ import static java.util.Objects.isNull;
 public class TextServiceImpl implements TextService {
     @Override
     public Text convertStringToText(String text) {
-      throw new UnsupportedOperationException("");
+     return  new Text().split(text);
     }
 
     @Override
