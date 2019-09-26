@@ -1,10 +1,10 @@
-package com.task2.homework7.example1;
+package com.task2.homework7.console.entity;
 
 
+import com.task2.homework7.console.sort.BubbleSort;
+import com.task2.homework7.console.validator.EmailValidator;
+import com.task2.homework7.console.validator.Сonverter;
 
-import com.task2.homework7.example1.sort.BubbleSort;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ public class Menu {
     private static ArrayList<User> users = new ArrayList<>();
     private ResourceBundle lang;
 
-    void chooseMenuLang() throws UnsupportedEncodingException {
+    public void chooseMenuLang() {
         Scanner in = new Scanner(System.in);
         System.out.println("Choose language/Оберіть мову");
         System.out.println("English (1)");
@@ -25,13 +25,13 @@ public class Menu {
         chooseLang(chooseLanguage);
     }
 
-    void chooseLang(int in) throws UnsupportedEncodingException {
+    void chooseLang(int in) {
 
         try {
             if (in == 1) {
-                lang = ResourceBundle.getBundle("resources", new Locale("en"), new UTF8Control());
+                lang = ResourceBundle.getBundle("resources", new Locale("en"), new Сonverter());
             } else if (in == 2) {
-                lang = ResourceBundle.getBundle("resources", new Locale("ua"), new UTF8Control());
+                lang = ResourceBundle.getBundle("resources", new Locale("ua"), new Сonverter());
             } else
                 chooseMenuLang();
         } catch (Exception e) {
@@ -40,13 +40,13 @@ public class Menu {
         menu();
     }
 
-    void menu() throws UnsupportedEncodingException {
+    void menu() {
 
         System.out.println(lang.getString("menu"));
         System.out.println("1 - " + lang.getString("viewStudent"));
-        System.out.println("2 - "+ lang.getString("addStudent"));
-        System.out.println("3 - "+ lang.getString("sortStudent"));
-        System.out.println("4 - "+ lang.getString("chooseLanguage"));
+        System.out.println("2 - " + lang.getString("addStudent"));
+        System.out.println("3 - " + lang.getString("sortStudent"));
+        System.out.println("4 - " + lang.getString("chooseLanguage"));
         Scanner in = new Scanner(System.in);
 
         int choice;
@@ -86,7 +86,7 @@ public class Menu {
         }
     }
 
-    void createUserFromConsole() throws UnsupportedEncodingException {
+    void createUserFromConsole() {
         String nameStudent;
         String surnameStudent;
         int age;
@@ -110,7 +110,7 @@ public class Menu {
             throw new IllegalArgumentException(lang.getString("uncorrectedArgument"));
         }
         users.add(new User(nameStudent, surnameStudent, age, email));
-        System.out.println(lang.getString("studentCreated")+"\n");
+        System.out.println(lang.getString("studentCreated") + "\n");
 
         menu();
     }
@@ -118,7 +118,7 @@ public class Menu {
     void sortUser() {
         //users.sort(users.get(0).getUserComparator());
         BubbleSort.sort(users);
-        System.out.println(lang.getString("usersAreSorted")+"\n");
+        System.out.println(lang.getString("usersAreSorted") + "\n");
     }
 
     private String writeEmail(Scanner in) {

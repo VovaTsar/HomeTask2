@@ -1,7 +1,7 @@
-package com.task2.homework7.example1.sort;
+package com.task2.homework7.console.sort;
 
 
-import com.task2.homework7.example1.User;
+import com.task2.homework7.console.entity.User;
 
 import java.util.ArrayList;
 import java.util.Collections;

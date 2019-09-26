@@ -1,4 +1,4 @@
-package com.task2.homework7.example1;
+package com.task2.homework7.console.validator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,12 +9,10 @@ import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-public class UTF8Control extends ResourceBundle.Control {
+public class Сonverter extends ResourceBundle.Control {
     public ResourceBundle newBundle
             (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
-            throws IllegalAccessException, InstantiationException, IOException
-    {
-        // The below is a copy of the default implementation.
+            throws IOException {
         String bundleName = toBundleName(baseName, locale);
         String resourceName = toResourceName(bundleName, "properties");
         ResourceBundle bundle = null;
@@ -33,7 +31,6 @@ public class UTF8Control extends ResourceBundle.Control {
         }
         if (stream != null) {
             try {
-                // Only this line is changed to make it to read properties files as cp1251.
                 bundle = new PropertyResourceBundle(new InputStreamReader(stream, "cp1251"));
             } finally {
                 stream.close();

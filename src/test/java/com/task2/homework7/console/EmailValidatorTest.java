@@ -1,5 +1,6 @@
-package com.task2.homework7.example1;
+package com.task2.homework7.console;
 
+import com.task2.homework7.console.validator.EmailValidator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

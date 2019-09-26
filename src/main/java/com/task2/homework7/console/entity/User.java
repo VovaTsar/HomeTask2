@@ -1,4 +1,4 @@
-package com.task2.homework7.example1;
+package com.task2.homework7.console.entity;
 
 import java.util.Comparator;
 

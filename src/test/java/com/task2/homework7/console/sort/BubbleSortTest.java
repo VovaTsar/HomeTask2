@@ -1,14 +1,13 @@
-package com.task2.homework7.example1.sort;
+package com.task2.homework7.console.sort;
 
-import com.task2.homework7.example1.User;
+import com.task2.homework7.console.entity.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
-public class SelectionSortTest {
-
+public class BubbleSortTest {
     @Test
     public void shouldReturnSortArrayList() {
         User vova = new User("vova", "surname", 20, "first@gmail.com");
@@ -24,9 +23,10 @@ public class SelectionSortTest {
         studentsActual.add(vova);
         studentsActual.add(vania);
         studentsActual.add(vova1);
-        SelectionSort.sort(studentsActual);
+        BubbleSort.sort(studentsActual);
 
         assertArrayEquals(studentsExpected.toArray(), studentsActual.toArray());
 
     }
+
 }
