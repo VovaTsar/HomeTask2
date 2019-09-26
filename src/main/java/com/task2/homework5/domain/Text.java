@@ -78,8 +78,7 @@ public class Text {
         result.append(header);
         result.append("\n");
 
-        for (Sentence sentence : sentences
-        ) {
+        for (Sentence sentence : sentences) {
             result.append(sentence);
         }
         return result.toString();

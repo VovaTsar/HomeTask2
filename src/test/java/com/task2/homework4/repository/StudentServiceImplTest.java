@@ -76,7 +76,7 @@ public class StudentServiceImplTest {
 
     @Test
     public void shouldFindStudentByYear() {
-        Student students = Student.builder().withId(1L).withBirthday(LocalDate.of(1999,6,11)).build();
+        Student students = Student.builder().withId(1L).withBirthday(LocalDate.of(1999, 6, 11)).build();
         ArrayList<Student> expected = new ArrayList<>();
         expected.add(students);
         when(studentRepository.findByYear(1920)).thenReturn(expected);
@@ -99,14 +99,15 @@ public class StudentServiceImplTest {
 
 
     }
-@Test
+
+    @Test
     public void shouldFindStudentByDepartmentAndCourse() {
         Student students = Student.builder().withId(1L).withDepartment(new Department(1L, "kpi")).withCourse(4).build();
         ArrayList<Student> expected = new ArrayList<>();
         expected.add(students);
-        when(studentRepository.findByDepartmentAndCourse(1L,4)).thenReturn(expected);
+        when(studentRepository.findByDepartmentAndCourse(1L, 4)).thenReturn(expected);
 
-        ArrayList<Student> actual = studentService.findByDepartmentAndCourse(1L,4);
+        ArrayList<Student> actual = studentService.findByDepartmentAndCourse(1L, 4);
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
