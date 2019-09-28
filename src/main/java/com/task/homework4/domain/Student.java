@@ -1,102 +1,172 @@
 package com.task.homework4.domain;
 
-/**
- * id, Фамилия, Имя, Отчество, Дата рождения, Адрес, Телефон,
- * Факультет, Курс, Группа.Scls
- */
-public class Student extends Person {
-    private String address;
-    private String tel;
-    private final String faculty;
-    private final int course;
-    private final String group;
+import java.time.LocalDate;
+import java.util.Objects;
 
-    public String getFaculty() {
-        return faculty;
+public class Student {
+    private final Long id;
+    private final String name;
+    private final String surname;
+    private final LocalDate birthday;
+    private final Address address;
+    private final Department department;
+    private final PhoneNumber phoneNumber;
+    private final String group;
+    private final int course;
+
+
+    private Student(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.surname = builder.surname;
+        this.birthday = builder.birthday;
+        this.address = builder.address;
+        this.department = builder.department;
+        this.phoneNumber = builder.phoneNumber;
+        this.group = builder.group;
+        this.course = builder.course;
     }
 
-    public int getCourse() {
-        return course;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getGroup() {
         return group;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-   public Student(StudentBuilder studentBuilder, Person person) {
-        super(person);
-        this.address=studentBuilder.address;
-        this.tel=studentBuilder.tel;
-        this.faculty = studentBuilder.faculty;
-        this.course = studentBuilder.course;
-        this.group = studentBuilder.group;
+    public int getCourse() {
+        return course;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "address='" + address + '\'' +
-                ", tel='" + tel + '\'' +
-                ", faculty='" + faculty + '\'' +
-                ", course=" + course +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthday=" + birthday +
+                ", address=" + address +
+                ", department=" + department +
+                ", phoneNumber=" + phoneNumber +
                 ", group='" + group + '\'' +
-                super.toString()+
+                ", course=" + course +
                 '}';
     }
 
-    public static class StudentBuilder {
-        private String address;
-        private String tel;
-        private String faculty;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return course == student.course &&
+                Objects.equals(id, student.id) &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(surname, student.surname) &&
+                Objects.equals(birthday, student.birthday) &&
+                Objects.equals(address, student.address) &&
+                Objects.equals(department, student.department) &&
+                Objects.equals(phoneNumber, student.phoneNumber) &&
+                Objects.equals(group, student.group);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, birthday, address, department, phoneNumber, group, course);
+    }
+
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String surname;
+        private LocalDate birthday;
+        private Address address;
+        private Department department;
+        private PhoneNumber phoneNumber;
         private int course;
         private String group;
 
-        public StudentBuilder withAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public StudentBuilder withTel(String tel) {
-            this.tel = tel;
-            return this;
-        }
-
-        public StudentBuilder withFaculty(String faculty) {
-            this.faculty = faculty;
-            return this;
-        }
-
-        public StudentBuilder withCourse(int course) {
-            if (course<0||course>7){
-                throw new IllegalArgumentException("Course must be in range 1 to 6");
-            }
-            this.course = course;
-            return this;
-        }
-
-        public StudentBuilder withGroup(String group) {
+        public Builder withGroup(String group) {
             this.group = group;
             return this;
         }
 
-        public Student build(Person person) {
-            return new Student(this, person);
+
+        public Builder withCourse(int course) {
+            this.course = course;
+            return this;
+        }
+
+        private Builder() {
+        }
+
+
+        public Student build() {
+            return new Student(this);
+        }
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder withBirthday(LocalDate birthday) {
+            this.birthday = birthday;
+            return this;
+        }
+
+        public Builder withAddress(Address address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withDepartment(Department department) {
+            this.department = department;
+            return this;
+        }
+
+        public Builder withPhoneNumber(PhoneNumber phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
         }
     }
 }

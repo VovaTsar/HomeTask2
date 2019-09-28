@@ -2,83 +2,89 @@ package com.task.homework4.service;
 
 
 import com.task.homework4.domain.Student;
+import com.task.homework4.repository.StudentRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
+    private StudentRepository studentRepository;
+    private static StudentServiceImpl instance;
 
     private StudentServiceImpl() {
     }
 
-    private static class SingletonHolder {
-        private final static StudentServiceImpl instance = new StudentServiceImpl();
+    public static StudentServiceImpl getInstance(StudentRepository studentRepository) {
+        if (instance == null) {
+            instance = new StudentServiceImpl(studentRepository);
+        }
+        return instance;
     }
 
-    public static StudentServiceImpl getInstance() {
-        return SingletonHolder.instance;
+    private StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-    public void printStudents(String info, List<Student> students) {
-        System.out.println(info + ":");
-        for (Student student : students) {
-            System.out.println(student);
-
+    @Override
+    public Student register(Student student) {
+        if (student == null) {
+            throw new IllegalArgumentException(" Student is null");
         }
+        return studentRepository.save(student);
     }
 
-    public ArrayList<Student> findByFaculty(String faculty, List<Student> students) {
-        if (students == null) {
-            throw new NullPointerException("Empty");
+    @Override
+    public Student findById(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("id must be > 0");
         }
-        ArrayList<Student> findStudentsByFaculty = new ArrayList<>();
-        for (Student student : students) {
-            if (faculty.equals(student.getFaculty())) {
-                findStudentsByFaculty.add(student);
-            }
-        }
-        return findStudentsByFaculty;
+        return studentRepository.findById(id);
     }
 
-    public ArrayList<Student> findByYear(int year, List<Student> students) {
-        if (students == null) {
-            throw new NullPointerException("Empty");
+    @Override
+    public void update(Student student) {
+        if (student == null) {
+            throw new IllegalArgumentException("");
         }
-        ArrayList<Student> findStudentsByYear = new ArrayList<>();
-        for (Student student : students) {
-            if (year < student.getBirthday().getYear()) {
-                findStudentsByYear.add(student);
-            }
-        }
-        return findStudentsByYear;
+        studentRepository.update(student);
     }
 
-    public ArrayList<Student> findByGroup(String group, List<Student> students) {
-        if (students == null) {
-            throw new NullPointerException("Empty");
+    @Override
+    public Student deleteById(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("id must be > 0");
         }
-        ArrayList<Student> findStudentsByGroup = new ArrayList<>();
-        for (Student student : students
-        ) {
-            if (group.equals(student.getGroup())) {
-                findStudentsByGroup.add(student);
-            }
-        }
-        return findStudentsByGroup;
+        return studentRepository.deleteById(id);
     }
 
-    public ArrayList<Student> findByFacultyAndCourse(String faculty, int course, List<Student> students) {
-        if (students == null) {
-            throw new NullPointerException("Empty");
+    @Override
+    public ArrayList<Student> findByDepartment(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("id must be > 0");
         }
-        ArrayList<Student> findStudentsByFacultyAndCourse = new ArrayList<>();
-        for (Student student : students
-        ) {
-            if (faculty.equals(student.getFaculty()) && course == student.getCourse()) {
-                findStudentsByFacultyAndCourse.add(student);
-            }
-        }
-        return findStudentsByFacultyAndCourse;
+        return studentRepository.findByDepartment(id);
     }
 
+    @Override
+    public ArrayList<Student> findByYear(int year) {
+        if (year < 1920) {
+            throw new IllegalArgumentException("id must be > 0");
+        }
+        return studentRepository.findByYear(year);
+    }
+
+    @Override
+    public ArrayList<Student> findByGroup(String group) {
+        if (group == null) {
+            throw new IllegalArgumentException("Group is null");
+        }
+        return studentRepository.findByGroup(group);
+    }
+
+    @Override
+    public ArrayList<Student> findByDepartmentAndCourse(Long id, int course) {
+        if (id < 0 || course > 6 || course < 0) {
+            throw new IllegalArgumentException("Course must be in range 1 to 6 and Id must be >0");
+        }
+        return studentRepository.findByDepartmentAndCourse(id, course);
+    }
 }

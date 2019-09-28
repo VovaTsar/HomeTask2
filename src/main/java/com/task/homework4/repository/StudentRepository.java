@@ -1,12 +1,13 @@
-package com.task.homework4.service;
-
+package com.task.homework4.repository;
 
 import com.task.homework4.domain.Student;
 
 import java.util.ArrayList;
 
-public interface StudentService {
-    Student register(Student student);
+public interface StudentRepository {
+
+    Student save(Student student);
+
 
     Student findById(Long id);
 
@@ -15,6 +16,7 @@ public interface StudentService {
 
 
     Student deleteById(Long id);
+
 
     ArrayList<Student> findByDepartment(Long id);
 
