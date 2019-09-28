@@ -41,6 +41,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public ArrayList<Student> findAll() {
+        return studentRepository.findAll();
+    }
+
+    @Override
     public void update(Student student) {
         if (student == null) {
             throw new IllegalArgumentException("");

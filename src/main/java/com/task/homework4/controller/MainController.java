@@ -28,6 +28,10 @@ public class MainController {
         studentService.update(student);
     }
 
+    public ArrayList<Student> findAll () {
+
+      return   studentService.findAll();
+    }
 
     public Student deleteById(Long id) {
 

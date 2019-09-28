@@ -23,6 +23,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Student save(Student student) {
+
         return idToStudents.put(++counter, student);
     }
 
@@ -30,6 +31,13 @@ public class StudentRepositoryImpl implements StudentRepository {
     public Student findById(Long id) {
         return idToStudents.get(id);
     }
+
+    @Override
+    public ArrayList<Student> findAll() {
+        return new ArrayList<>(idToStudents.values());
+    }
+
+
 
     @Override
     public void update(Student student) {

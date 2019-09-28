@@ -12,6 +12,8 @@ public interface StudentRepository {
     Student findById(Long id);
 
 
+    ArrayList<Student> findAll();
+
     void update(Student student);
 
 
