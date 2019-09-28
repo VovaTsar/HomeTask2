@@ -1,4 +1,4 @@
-package com.task.homework7.console.validator;
+package com.task.homework4.helper.localization;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -3,7 +3,6 @@ package com.task.homework4.init;
 
 import com.task.homework4.domain.Address;
 import com.task.homework4.domain.Department;
-import com.task.homework4.domain.PhoneNumber;
 import com.task.homework4.domain.Student;
 import com.task.homework4.repository.StudentRepository;
 import com.task.homework4.repository.StudentRepositoryImpl;
@@ -22,36 +21,36 @@ public class Menu {
         Student vova = Student.builder()
                 .withName("Vova")
                 .withSurname("Ts")
-                .withId(1L)
                 .withBirthday(LocalDate.of(1999, 6, 11))
                 .withGroup("IP-64")
                 .withAddress(new Address("Kyiv", "WWW", 7))
-                .withPhoneNumber(new PhoneNumber(380, 7341345))
+                .withPhoneNumber("3807341345")
                 .withDepartment(department)
+                .withEmail("adddfeewdw@gamil.com")
                 .withCourse(4)
                 .build();
 
         Student vania = Student.builder()
                 .withName("Vania")
                 .withSurname("Zaichenko")
-                .withId(2L)
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withGroup("IP-64")
                 .withAddress(new Address("Kyiv", "WWW", 8))
-                .withPhoneNumber(new PhoneNumber(380, 43545345))
+                .withPhoneNumber("38043545345")
                 .withDepartment(department)
                 .withCourse(4)
+                .withEmail("adadwdw@gamil.com")
                 .build();
 
         Student vasyl = Student.builder()
                 .withName("Vasyl")
                 .withSurname("Zaichenko")
-                .withId(3L)
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withGroup("IP-64")
                 .withAddress(new Address("Kyiv", "WWW", 8))
-                .withPhoneNumber(new PhoneNumber(380, 63355345))
+                .withPhoneNumber("38063355345")
                 .withDepartment(department)
+                .withEmail("edqddwdw@gamil.com")
                 .withCourse(4)
                 .build();
         studentService.register(vova);
