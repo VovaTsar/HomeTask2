@@ -6,10 +6,10 @@
 
   <groupId>homeTask2</groupId>
   <artifactId>task2</artifactId>
+  <packaging>war</packaging>
   <version>0</version>
 
   <name>task2</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
