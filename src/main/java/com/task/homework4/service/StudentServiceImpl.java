@@ -1,11 +1,13 @@
 package com.task.homework4.service;
 
 
+import com.task.homework4.annotation.Service;
 import com.task.homework4.domain.Student;
 import com.task.homework4.repository.StudentRepository;
 
 import java.util.ArrayList;
 
+@Service
 public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
     private static StudentServiceImpl instance;

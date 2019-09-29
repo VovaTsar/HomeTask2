@@ -1,4 +1,6 @@
-package com.task.homework4.helper.validator;
+package com.task.homework4.helper.validator.impl;
+
+import com.task.homework4.helper.validator.Validate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

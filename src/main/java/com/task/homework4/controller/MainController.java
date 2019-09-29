@@ -1,5 +1,6 @@
 package com.task.homework4.controller;
 
+import com.task.homework4.annotation.Controller;
 import com.task.homework4.domain.Student;
 import com.task.homework4.repository.StudentRepository;
 import com.task.homework4.repository.StudentRepositoryImpl;
@@ -8,6 +9,7 @@ import com.task.homework4.service.StudentServiceImpl;
 
 import java.util.ArrayList;
 
+@Controller
 public class MainController {
     private StudentRepository studentRepository = StudentRepositoryImpl.getInstance();
     private StudentService studentService = StudentServiceImpl.getInstance(studentRepository);
@@ -28,9 +30,9 @@ public class MainController {
         studentService.update(student);
     }
 
-    public ArrayList<Student> findAll () {
+    public ArrayList<Student> findAll() {
 
-      return   studentService.findAll();
+        return studentService.findAll();
     }
 
     public Student deleteById(Long id) {
