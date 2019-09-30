@@ -1,7 +1,7 @@
 package com.task.homework4.repository;
 
-import com.task.homework4.annotation.Repository;
 import com.task.homework4.domain.Student;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,17 +10,6 @@ import java.util.Map;
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
 
-    private static StudentRepositoryImpl instance;
-
-    private StudentRepositoryImpl() {
-    }
-
-    public static StudentRepositoryImpl getInstance() {
-        if (instance == null) {
-            instance = new StudentRepositoryImpl();
-        }
-        return instance;
-    }
 
     private Map<Long, Student> idToStudents = new HashMap<>();
     private static Long counter = 0L;

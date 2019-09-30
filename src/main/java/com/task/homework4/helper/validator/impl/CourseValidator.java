@@ -1,10 +1,11 @@
 package com.task.homework4.helper.validator.impl;
 
 import com.task.homework4.helper.validator.Validate;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@Component
 public class CourseValidator implements Validate {
     private final String COURSE_PATTERN = "[1-6]{1}";
 

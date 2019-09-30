@@ -1,28 +1,20 @@
 package com.task.homework4.service;
 
 
-import com.task.homework4.annotation.Service;
 import com.task.homework4.domain.Student;
 import com.task.homework4.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+
     private StudentRepository studentRepository;
-    private static StudentServiceImpl instance;
 
-    private StudentServiceImpl() {
-    }
-
-    public static StudentServiceImpl getInstance(StudentRepository studentRepository) {
-        if (instance == null) {
-            instance = new StudentServiceImpl(studentRepository);
-        }
-        return instance;
-    }
-
-    private StudentServiceImpl(StudentRepository studentRepository) {
+    @Autowired
+    public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 

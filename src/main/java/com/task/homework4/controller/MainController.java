@@ -6,13 +6,19 @@ import com.task.homework4.repository.StudentRepository;
 import com.task.homework4.repository.StudentRepositoryImpl;
 import com.task.homework4.service.StudentService;
 import com.task.homework4.service.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Controller
+@Component
 public class MainController {
-    private StudentRepository studentRepository = StudentRepositoryImpl.getInstance();
-    private StudentService studentService = StudentServiceImpl.getInstance(studentRepository);
+    private StudentService studentService;
+
+    @Autowired
+    public MainController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public Student register(Student student) {
         return studentService.register(student);

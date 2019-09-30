@@ -1,6 +1,8 @@
 package com.task.homework4.domain;
 
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
