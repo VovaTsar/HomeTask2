@@ -1,12 +1,13 @@
 package com.task.homework4.view;
 
 import com.task.homework4.controller.MainController;
-import com.task.homework4.domain.Address;
 import com.task.homework4.domain.Department;
 import com.task.homework4.domain.Student;
-import com.task.homework4.helper.localization.Сonverter;
+import com.task.homework4.helper.localization.Converter;
 import com.task.homework4.helper.sort.BubbleSort;
 import com.task.homework4.helper.validator.ValidatorFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,16 +16,23 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+@Component
 public class ViewInfo {
 
-    private MainController mainController = new MainController();
+    private MainController mainController;
+    private ResourceBundle lang;
+
+    @Autowired
+    public ViewInfo(MainController mainController) {
+        this.mainController = mainController;
+    }
+
     private Scanner in = new Scanner(System.in);
 
     public void run() {
         chooseMenuLang();
     }
 
-    private ResourceBundle lang;
 
     public void chooseMenuLang() {
         System.out.println("Choose language/Оберіть мову");
@@ -39,9 +47,9 @@ public class ViewInfo {
 
         try {
             if (chooseLang == 1) {
-                lang = ResourceBundle.getBundle("resources", new Locale("en"), new Сonverter());
+                lang = ResourceBundle.getBundle("resources", new Locale("en"), new Converter());
             } else if (chooseLang == 2) {
-                lang = ResourceBundle.getBundle("resources", new Locale("ua"), new Сonverter());
+                lang = ResourceBundle.getBundle("resources", new Locale("ua"), new Converter());
             } else
                 chooseMenuLang();
         } catch (Exception e) {
@@ -57,6 +65,10 @@ public class ViewInfo {
         System.out.println("2 - " + lang.getString("addStudent"));
         System.out.println("3 - " + lang.getString("sortStudent"));
         System.out.println("4 - " + lang.getString("chooseLanguage"));
+        System.out.println("5 - " + lang.getString("inputId"));
+        System.out.println("6 - " + lang.getString("inputIdDepartment"));
+        System.out.println("7 - " + lang.getString("inputGroup"));
+        System.out.println("8 - " + lang.getString("inputCourse"));
 
         int choice;
         try {
@@ -79,6 +91,19 @@ public class ViewInfo {
             case 4:
                 chooseMenuLang();
                 break;
+            case 5:
+                print(findById());
+                break;
+            case 6:
+                printAllUsers(findByDepartment());
+                break;
+            case 7:
+                printAllUsers(findByGroup());
+                break;
+            case 8:
+                printAllUsers(findByDepartmentAndCourse());
+                break;
+
         }
         menu();
     }
@@ -131,7 +156,7 @@ public class ViewInfo {
 
     void sortUser() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
-        printAllUsers( BubbleSort.sort(mainController.findAll()));
+        printAllUsers(BubbleSort.sort(mainController.findAll()));
     }
 
     private String writeFieldValidator(String nameField) {
@@ -155,4 +180,30 @@ public class ViewInfo {
     public void print(Student students) {
         System.out.println(students);
     }
+
+    private Student findById() {
+        System.out.println(lang.getString("inputId"));
+        return mainController.findById(in.nextLong());
+    }
+
+    private ArrayList<Student> findByDepartment() {
+        System.out.println(lang.getString("inputDepartment"));
+        return mainController.findByDepartment(in.nextLong());
+    }
+
+    private ArrayList<Student> findByGroup() {
+        System.out.println(lang.getString("inputGroup"));
+        String group = in.nextLine();
+        group = in.nextLine();
+        return mainController.findByGroup(group);
+    }
+
+    private ArrayList<Student> findByDepartmentAndCourse() {
+        System.out.println(lang.getString("inputIdDepartment"));
+        Long department = in.nextLong();
+        System.out.println(lang.getString("inputCourse"));
+        int course = in.nextInt();
+        return mainController.findByDepartmentAndCourse(department, course);
+    }
+
 }

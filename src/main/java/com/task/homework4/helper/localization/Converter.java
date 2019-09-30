@@ -1,5 +1,7 @@
 package com.task.homework4.helper.localization;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,8 +10,8 @@ import java.net.URLConnection;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-
-public class Сonverter extends ResourceBundle.Control {
+@Component
+public class Converter extends ResourceBundle.Control {
     public ResourceBundle newBundle
             (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
             throws IOException {

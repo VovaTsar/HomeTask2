@@ -1,5 +1,9 @@
 package com.task.homework4.helper.validator;
 
+import com.task.homework4.helper.validator.impl.*;
+import org.springframework.stereotype.Component;
+
+@Component
 public final class ValidatorFactory {
 
     public static Validate getValidator(String field) {

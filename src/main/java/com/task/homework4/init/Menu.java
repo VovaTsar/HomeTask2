@@ -4,16 +4,21 @@ package com.task.homework4.init;
 import com.task.homework4.domain.Address;
 import com.task.homework4.domain.Department;
 import com.task.homework4.domain.Student;
-import com.task.homework4.repository.StudentRepository;
-import com.task.homework4.repository.StudentRepositoryImpl;
 import com.task.homework4.service.StudentService;
-import com.task.homework4.service.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class Menu {
-    private StudentRepository studentRepository = StudentRepositoryImpl.getInstance();
-    private StudentService studentService = StudentServiceImpl.getInstance(studentRepository);
+
+    private StudentService studentService;
+
+    @Autowired
+    public Menu(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
 
     public void run() {

@@ -12,7 +12,6 @@ public class TextServiceImplTest {
     public void shouldReturnNullStringForNullText() {
         String expectedResult = null;
         String actualResult = textService.convertTextToString(null);
-//        assertEquals(expectedResult,actualResult);
         assertNull("", actualResult);
     }
 
