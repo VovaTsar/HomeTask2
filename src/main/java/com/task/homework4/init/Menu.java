@@ -28,10 +28,11 @@ public class Menu {
                 .withSurname("Ts")
                 .withBirthday(LocalDate.of(1999, 6, 11))
                 .withGroup("IP-64")
+                .withPassword("12345")
                 .withAddress(new Address("Kyiv", "WWW", 7))
                 .withPhoneNumber("3807341345")
                 .withDepartment(department)
-                .withEmail("adddfeewdw@gamil.com")
+                .withEmail("vova@gmail.com")
                 .withCourse(4)
                 .build();
 
@@ -40,11 +41,12 @@ public class Menu {
                 .withSurname("Zaichenko")
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withGroup("IP-64")
+                .withPassword("12345")
                 .withAddress(new Address("Kyiv", "WWW", 8))
                 .withPhoneNumber("38043545345")
                 .withDepartment(department)
                 .withCourse(4)
-                .withEmail("adadwdw@gamil.com")
+                .withEmail("vania@gmail.com")
                 .build();
 
         Student vasyl = Student.builder()
@@ -52,10 +54,11 @@ public class Menu {
                 .withSurname("Zaichenko")
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withGroup("IP-64")
+                .withPassword("12345")
                 .withAddress(new Address("Kyiv", "WWW", 8))
                 .withPhoneNumber("38063355345")
                 .withDepartment(department)
-                .withEmail("edqddwdw@gamil.com")
+                .withEmail("vasyl@gmail.com")
                 .withCourse(4)
                 .build();
         studentService.register(vova);

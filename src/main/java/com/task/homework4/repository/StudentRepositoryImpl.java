@@ -20,9 +20,23 @@ public class StudentRepositoryImpl implements StudentRepository {
         return idToStudents.put(++counter, student);
     }
 
+
     @Override
     public Student findById(Long id) {
         return idToStudents.get(id);
+    }
+
+    @Override
+    public Student findByEmail(String email) {
+        Student student=null;
+        for (Long i = 1L; i <idToStudents.size()+1 ; i++) {
+            if (idToStudents.get(i).getEmail().equals(email)){
+                student=idToStudents.get(i);
+                break;
+            }
+
+        }
+        return student;
     }
 
     @Override

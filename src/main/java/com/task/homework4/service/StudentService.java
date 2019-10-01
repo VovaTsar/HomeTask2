@@ -13,8 +13,7 @@ public interface StudentService {
     ArrayList<Student> findAll();
 
     void update(Student student);
-
-
+    Student login(String email,String password);
     Student deleteById(Long id);
 
     ArrayList<Student> findByDepartment(Long id);

@@ -1,11 +1,7 @@
 package com.task.homework4.controller;
 
-import com.task.homework4.annotation.Controller;
 import com.task.homework4.domain.Student;
-import com.task.homework4.repository.StudentRepository;
-import com.task.homework4.repository.StudentRepositoryImpl;
 import com.task.homework4.service.StudentService;
-import com.task.homework4.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +26,9 @@ public class MainController {
         return studentService.findById(id);
     }
 
+    public Student login(String email, String password) {
+        return studentService.login(email, password);
+    }
 
     public void update(Student student) {
 

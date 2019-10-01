@@ -64,11 +64,12 @@ public class ViewInfo {
         System.out.println("1 - " + lang.getString("viewStudent"));
         System.out.println("2 - " + lang.getString("addStudent"));
         System.out.println("3 - " + lang.getString("sortStudent"));
-        System.out.println("4 - " + lang.getString("chooseLanguage"));
+        System.out.println("4 - " + lang.getString("loginStudent"));
         System.out.println("5 - " + lang.getString("inputId"));
         System.out.println("6 - " + lang.getString("inputIdDepartment"));
         System.out.println("7 - " + lang.getString("inputGroup"));
         System.out.println("8 - " + lang.getString("inputCourse"));
+        System.out.println("9 - " + lang.getString("chooseLanguage"));
 
         int choice;
         try {
@@ -89,7 +90,7 @@ public class ViewInfo {
                 sortUser();
                 break;
             case 4:
-                chooseMenuLang();
+                System.out.println(login());
                 break;
             case 5:
                 print(findById());
@@ -103,7 +104,9 @@ public class ViewInfo {
             case 8:
                 printAllUsers(findByDepartmentAndCourse());
                 break;
-
+            case 9:
+                chooseMenuLang();
+                break;
         }
         menu();
     }
@@ -132,6 +135,8 @@ public class ViewInfo {
         System.out.println(lang.getString("groupStudent"));
         String group = in.nextLine();
         int course = Integer.parseInt(writeFieldValidator("course"));
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
 
         Student student = Student.builder()
                 .withName(name)
@@ -140,6 +145,7 @@ public class ViewInfo {
                 .withDepartment(department)
                 .withPhoneNumber(phoneNumber)
                 .withGroup(group)
+                .withPassword(password)
                 .withCourse(course)
                 .withEmail(email)
                 .build();
@@ -171,6 +177,13 @@ public class ViewInfo {
         return fieldInput;
     }
 
+    private Student login(){
+        System.out.println("");
+        String email = writeFieldValidator("email");
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
+        return mainController.login(email,password);
+    }
     public void print(ArrayList<Student> students) {
         for (Student student : students) {
             print(student);

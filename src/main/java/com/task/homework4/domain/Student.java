@@ -1,8 +1,6 @@
 package com.task.homework4.domain;
 
 
-import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
@@ -18,7 +16,9 @@ public class Student implements Comparable<Student> {
     private final String group;
     private final int course;
     private final String email;
+    private final String password;
     private static Long counter = 0L;
+
 
     private final Comparator<Student> Student_COMPARATOR_BY_AGE =
             Comparator.comparingInt(student -> LocalDate.now().getYear() - student.birthday.getYear());
@@ -52,6 +52,7 @@ public class Student implements Comparable<Student> {
         this.group = builder.group;
         this.course = builder.course;
         this.email = builder.email;
+        this.password=builder.password;
     }
 
     public static Builder builder() {
@@ -98,6 +99,10 @@ public class Student implements Comparable<Student> {
         return email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -128,12 +133,13 @@ public class Student implements Comparable<Student> {
                 Objects.equals(department, student.department) &&
                 Objects.equals(phoneNumber, student.phoneNumber) &&
                 Objects.equals(group, student.group) &&
-                Objects.equals(email, student.email);
+                Objects.equals(email, student.email) &&
+                Objects.equals(password, student.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, birthday, address, department, phoneNumber, group, course, email);
+        return Objects.hash(id, name, surname, birthday, address, department, phoneNumber, group, course, email, password);
     }
 
     public static class Builder {
@@ -147,6 +153,12 @@ public class Student implements Comparable<Student> {
         private int course;
         private String group;
         private String email;
+        private  String password;
+
+        public Builder withPassword(String password) {
+            this.password = password;
+           return this;
+        }
 
         public Builder withEmail(String email) {
             this.email = email;
