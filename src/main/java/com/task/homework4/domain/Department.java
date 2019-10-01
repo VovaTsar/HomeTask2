@@ -2,7 +2,7 @@ package com.task.homework4.domain;
 
 import java.util.Objects;
 
-public class Department {
+public class Department implements Prototype {
     private final Long id;
     private final String name;
 
@@ -40,5 +40,10 @@ public class Department {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public Prototype clone() {
+        return new Department(id,name);
     }
 }

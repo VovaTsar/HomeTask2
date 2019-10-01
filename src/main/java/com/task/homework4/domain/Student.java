@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Student implements Comparable<Student> {
+public class Student implements Comparable<Student>, StudentPrototype {
     private final Long id;
     private final String name;
     private final String surname;
@@ -42,7 +42,11 @@ public class Student implements Comparable<Student> {
     }
 
     private Student(Builder builder) {
-        this.id = ++counter;
+        if (builder.id == null) {
+            this.id = ++counter;
+        } else {
+            this.id = builder.id;
+        }
         this.name = builder.name;
         this.surname = builder.surname;
         this.birthday = builder.birthday;
@@ -52,7 +56,7 @@ public class Student implements Comparable<Student> {
         this.group = builder.group;
         this.course = builder.course;
         this.email = builder.email;
-        this.password=builder.password;
+        this.password = builder.password;
     }
 
     public static Builder builder() {
@@ -142,8 +146,25 @@ public class Student implements Comparable<Student> {
         return Objects.hash(id, name, surname, birthday, address, department, phoneNumber, group, course, email, password);
     }
 
-    public static class Builder {
+    @Override
+    public StudentPrototype clone(String newPassword) {
+        return Student.builder()
+                .withId(id)
+                .withName(name)
+                .withSurname(surname)
+                .withBirthday(birthday)
+                .withGroup(group)
+                .withPassword(newPassword)
+                .withAddress((Address)address.clone())
+                .withPhoneNumber(phoneNumber)
+                .withDepartment((Department)department.clone())
+                .withEmail(email)
+                .withCourse(course)
+                .build();
+    }
 
+    public static class Builder {
+        private Long id;
         private String name;
         private String surname;
         private LocalDate birthday;
@@ -153,11 +174,16 @@ public class Student implements Comparable<Student> {
         private int course;
         private String group;
         private String email;
-        private  String password;
+        private String password;
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder withPassword(String password) {
             this.password = password;
-           return this;
+            return this;
         }
 
         public Builder withEmail(String email) {
