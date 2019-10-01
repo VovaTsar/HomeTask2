@@ -4,17 +4,18 @@ package com.task.homework4.service;
 import com.task.homework4.domain.Student;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public interface StudentService {
-    Student register(Student student);
+    Optional<Student> register(Student student);
 
-    Student findById(Long id);
+    Optional<Student> findById(Long id);
 
     ArrayList<Student> findAll();
 
     void update(Student student);
-    Student login(String email,String password);
-    Student deleteById(Long id);
+    Optional<Student> login(String email,String password);
+    Optional<Student> deleteById(Long id);
 
     ArrayList<Student> findByDepartment(Long id);
 

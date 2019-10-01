@@ -3,22 +3,23 @@ package com.task.homework4.repository;
 import com.task.homework4.domain.Student;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public interface StudentRepository {
 
-    Student save(Student student);
+    Optional<Student> save(Student student);
 
 
-    Student findById(Long id);
+    Optional<Student> findById(Long id);
 
-    Student findByEmail(String email);
+    Optional<Student> findByEmail(String email);
 
     ArrayList<Student> findAll();
 
     void update(Student student);
 
 
-    Student deleteById(Long id);
+    Optional<Student> deleteById(Long id);
 
 
     ArrayList<Student> findByDepartment(Long id);

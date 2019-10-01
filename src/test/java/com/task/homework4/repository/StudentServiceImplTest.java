@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.reset;
@@ -36,9 +37,9 @@ public class StudentServiceImplTest {
     @Test
     public void shouldSaveStudent() {
         Student student = Student.builder().build();
-        when(studentRepository.save(any(Student.class))).thenReturn(student);
+        when(studentRepository.save(any(Student.class))).thenReturn(Optional.ofNullable(student));
 
-        Student student1 = studentService.register(student);
+        Optional<Student> student1 = studentService.register(student);
         assertNotNull(student1);
 
     }
@@ -46,20 +47,20 @@ public class StudentServiceImplTest {
     @Test
     public void shouldFindStudentById() {
         Student expected = Student.builder().withName("Vova").build();
-        when(studentRepository.findById(1L)).thenReturn(expected);
+        when(studentRepository.findById(1L)).thenReturn(Optional.ofNullable(expected));
 
-        Student actual = studentService.findById(1L);
-        assertEquals(expected, actual);
+        Optional<Student> actual = studentService.findById(1L);
+        actual.ifPresent(student -> assertEquals(expected, student));
 
     }
 
     @Test
     public void shouldReturnDeleteStudent() {
         Student expected = Student.builder().build();
-        when(studentRepository.deleteById(1L)).thenReturn(expected);
+        when(studentRepository.deleteById(1L)).thenReturn(Optional.ofNullable(expected));
 
-        Student actual = studentService.deleteById(1L);
-        assertEquals(expected, actual);
+        Optional<Student> actual = studentService.deleteById(1L);
+        actual.ifPresent(student -> assertEquals(expected, student));
     }
 
     @Test

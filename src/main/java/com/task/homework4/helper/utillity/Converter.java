@@ -1,4 +1,4 @@
-package com.task.homework4.helper.localization;
+package com.task.homework4.helper.utillity;
 
 import org.springframework.stereotype.Component;
 

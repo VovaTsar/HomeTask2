@@ -3,7 +3,7 @@ package com.task.homework4.view;
 import com.task.homework4.controller.MainController;
 import com.task.homework4.domain.Department;
 import com.task.homework4.domain.Student;
-import com.task.homework4.helper.localization.Converter;
+import com.task.homework4.helper.utillity.Converter;
 import com.task.homework4.helper.sort.BubbleSort;
 import com.task.homework4.helper.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class ViewInfo {
@@ -93,7 +90,7 @@ public class ViewInfo {
                 System.out.println(login());
                 break;
             case 5:
-                print(findById());
+                System.out.println(findById());
                 break;
             case 6:
                 printAllUsers(findByDepartment());
@@ -177,7 +174,7 @@ public class ViewInfo {
         return fieldInput;
     }
 
-    private Student login(){
+    private Optional<Student> login(){
         System.out.println("");
         String email = writeFieldValidator("email");
         System.out.println(lang.getString("passwordStudent"));
@@ -194,7 +191,7 @@ public class ViewInfo {
         System.out.println(students);
     }
 
-    private Student findById() {
+    private Optional<Student> findById() {
         System.out.println(lang.getString("inputId"));
         return mainController.findById(in.nextLong());
     }
