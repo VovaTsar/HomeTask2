@@ -3,18 +3,18 @@ package com.task.homework4.view;
 import com.task.homework4.controller.MainController;
 import com.task.homework4.domain.Department;
 import com.task.homework4.domain.Student;
-import com.task.homework4.helper.localization.Converter;
+import com.task.homework4.helper.utillity.Converter;
 import com.task.homework4.helper.sort.BubbleSort;
 import com.task.homework4.helper.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class ViewInfo {
@@ -64,11 +64,12 @@ public class ViewInfo {
         System.out.println("1 - " + lang.getString("viewStudent"));
         System.out.println("2 - " + lang.getString("addStudent"));
         System.out.println("3 - " + lang.getString("sortStudent"));
-        System.out.println("4 - " + lang.getString("chooseLanguage"));
+        System.out.println("4 - " + lang.getString("loginStudent"));
         System.out.println("5 - " + lang.getString("inputId"));
         System.out.println("6 - " + lang.getString("inputIdDepartment"));
         System.out.println("7 - " + lang.getString("inputGroup"));
         System.out.println("8 - " + lang.getString("inputCourse"));
+        System.out.println("9 - " + lang.getString("chooseLanguage"));
 
         int choice;
         try {
@@ -79,36 +80,38 @@ public class ViewInfo {
 
         switch (choice) {
             case 1:
-                printAllUsers(BubbleSort.sort(mainController.findAll()));
+                printAllStudents(BubbleSort.sort(mainController.findAll()));
                 break;
 
             case 2:
-                createUserFromConsole();
+                createStudentFromConsole();
                 break;
             case 3:
-                sortUser();
+                sortStudent();
                 break;
             case 4:
-                chooseMenuLang();
+                System.out.println(login());
                 break;
             case 5:
-                print(findById());
+                System.out.println(findById());
                 break;
             case 6:
-                printAllUsers(findByDepartment());
+                printAllStudents(findByDepartment());
                 break;
             case 7:
-                printAllUsers(findByGroup());
+                printAllStudents(findByGroup());
                 break;
             case 8:
-                printAllUsers(findByDepartmentAndCourse());
+                printAllStudents(findByDepartmentAndCourse());
                 break;
-
+            case 9:
+                chooseMenuLang();
+                break;
         }
         menu();
     }
 
-    void printAllUsers(ArrayList<Student> students) {
+    void printAllStudents(ArrayList<Student> students) {
         if (mainController.findAll().isEmpty())
             System.out.println(lang.getString("noStudentYet"));
         else {
@@ -121,17 +124,24 @@ public class ViewInfo {
         }
     }
 
-    void createUserFromConsole() {
+    void createStudentFromConsole() {
 
         String name = writeFieldValidator("name");
         String surname = writeFieldValidator("surname");
-        String email = writeFieldValidator("email");
+         String email = writeFieldValidator("email");
+        //System.out.println(lang.getString("emailStudent"));
+      //  String email = in.nextLine();
         String phoneNumber = writeFieldValidator("phoneNumber");
         String birthday = writeFieldValidator("date");
         Department department = new Department(1L, "dep1");
         System.out.println(lang.getString("groupStudent"));
         String group = in.nextLine();
         int course = Integer.parseInt(writeFieldValidator("course"));
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
+
+//        javax.validation.ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        Validator validator = factory.getValidator();
 
         Student student = Student.builder()
                 .withName(name)
@@ -140,6 +150,7 @@ public class ViewInfo {
                 .withDepartment(department)
                 .withPhoneNumber(phoneNumber)
                 .withGroup(group)
+                .withPassword(password)
                 .withCourse(course)
                 .withEmail(email)
                 .build();
@@ -147,16 +158,25 @@ public class ViewInfo {
         System.out.println(lang.getString("studentCreated") + "\n");
 
         menu();
+//
+//        Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
+//
+//        if (constraintViolations.size() > 0) {
+//            for (ConstraintViolation<Student> violation : constraintViolations) {
+//                System.out.println(violation.getMessage());
+//            }
+//        } else {
+//            System.out.println("Valid Object");
+//        }
     }
-
     LocalDate splitBirthday(String birthday) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(birthday, formatter);
     }
 
-    void sortUser() {
+    void sortStudent() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
-        printAllUsers(BubbleSort.sort(mainController.findAll()));
+        printAllStudents(BubbleSort.sort(mainController.findAll()));
     }
 
     private String writeFieldValidator(String nameField) {
@@ -171,6 +191,13 @@ public class ViewInfo {
         return fieldInput;
     }
 
+    private Optional<Student> login(){
+        System.out.println("");
+        String email = writeFieldValidator("email");
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
+        return mainController.login(email,password);
+    }
     public void print(ArrayList<Student> students) {
         for (Student student : students) {
             print(student);
@@ -181,7 +208,7 @@ public class ViewInfo {
         System.out.println(students);
     }
 
-    private Student findById() {
+    private Optional<Student> findById() {
         System.out.println(lang.getString("inputId"));
         return mainController.findById(in.nextLong());
     }

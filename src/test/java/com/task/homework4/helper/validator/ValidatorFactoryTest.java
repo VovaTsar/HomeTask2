@@ -3,9 +3,7 @@ package com.task.homework4.helper.validator;
 import com.task.homework4.helper.validator.impl.*;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ValidatorFactoryTest {
     @Test

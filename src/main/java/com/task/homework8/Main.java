@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 
 public class Main {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+
         Reflection ex = new Reflection();
         // Change private modifier to public
         Field id = ex.getClass().getDeclaredField("id");

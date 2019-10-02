@@ -2,11 +2,14 @@ package com.task.homework4.service;
 
 
 import com.task.homework4.domain.Student;
+import com.task.homework4.exeption.LoginExeption;
+import com.task.homework4.helper.utillity.PasswordUtils;
 import com.task.homework4.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -19,15 +22,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student register(Student student) {
+    public Optional<Student> register(Student student) {
         if (student == null) {
             throw new IllegalArgumentException(" Student is null");
         }
-        return studentRepository.save(student);
+        String encodePassword = PasswordUtils.generateSecurePassword(student.getPassword());
+        Student studentWithEncode = (Student) student.clone(encodePassword);
+        return studentRepository.save(studentWithEncode);
     }
 
     @Override
-    public Student findById(Long id) {
+    public Optional<Student> findById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("id must be > 0");
         }
@@ -48,7 +53,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student deleteById(Long id) {
+    public Optional<Student> login(String email, String password) {
+        String encodePassword = PasswordUtils.generateSecurePassword(password);
+
+        Student student= studentRepository.findByEmail(email)
+                .orElseThrow(() -> new LoginExeption("Login are not exist"));
+        String userPassword = student.getPassword();
+        if (userPassword.equals(encodePassword)) {
+            return Optional.of(student);
+        }
+        throw new LoginExeption("Password is not correct");
+}
+
+    @Override
+    public Optional<Student> deleteById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("id must be > 0");
         }

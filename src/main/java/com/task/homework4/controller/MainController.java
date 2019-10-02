@@ -1,15 +1,12 @@
 package com.task.homework4.controller;
 
-import com.task.homework4.annotation.Controller;
 import com.task.homework4.domain.Student;
-import com.task.homework4.repository.StudentRepository;
-import com.task.homework4.repository.StudentRepositoryImpl;
 import com.task.homework4.service.StudentService;
-import com.task.homework4.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Component
 public class MainController {
@@ -20,16 +17,19 @@ public class MainController {
         this.studentService = studentService;
     }
 
-    public Student register(Student student) {
+    public Optional<Student> register(Student student) {
         return studentService.register(student);
     }
 
 
-    public Student findById(Long id) {
+    public Optional<Student> findById(Long id) {
 
         return studentService.findById(id);
     }
 
+    public Optional<Student> login(String email, String password) {
+        return studentService.login(email, password);
+    }
 
     public void update(Student student) {
 
@@ -41,7 +41,7 @@ public class MainController {
         return studentService.findAll();
     }
 
-    public Student deleteById(Long id) {
+    public Optional<Student> deleteById(Long id) {
 
         return studentService.deleteById(id);
     }
