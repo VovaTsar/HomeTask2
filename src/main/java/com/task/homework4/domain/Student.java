@@ -4,6 +4,7 @@ package com.task.homework4.domain;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Student implements Comparable<Student>, StudentPrototype {
     private final Long id;
@@ -116,10 +117,11 @@ public class Student implements Comparable<Student>, StudentPrototype {
                 ", birthday=" + birthday +
                 ", address=" + address +
                 ", department=" + department +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", group='" + group + '\'' +
                 ", course=" + course +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -148,6 +150,13 @@ public class Student implements Comparable<Student>, StudentPrototype {
 
     @Override
     public StudentPrototype clone(String newPassword) {
+        Address address = (Address) Optional.ofNullable(this.address)
+                .map(Address::clone)
+                .orElse(null);
+        Department department = (Department) Optional.ofNullable(this.department)
+                .map(Department::clone)
+                .orElse(null);
+
         return Student.builder()
                 .withId(id)
                 .withName(name)
@@ -155,9 +164,9 @@ public class Student implements Comparable<Student>, StudentPrototype {
                 .withBirthday(birthday)
                 .withGroup(group)
                 .withPassword(newPassword)
-                .withAddress((Address)address.clone())
+                .withAddress(address)
                 .withPhoneNumber(phoneNumber)
-                .withDepartment((Department)department.clone())
+                .withDepartment(department)
                 .withEmail(email)
                 .withCourse(course)
                 .build();

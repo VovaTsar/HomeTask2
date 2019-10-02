@@ -77,7 +77,7 @@ public class ViewInfo {
 
         switch (choice) {
             case 1:
-                printAllUsers(BubbleSort.sort(mainController.findAll()));
+                printAllStudents(BubbleSort.sort(mainController.findAll()));
                 break;
 
             case 2:
@@ -93,13 +93,13 @@ public class ViewInfo {
                 System.out.println(findById());
                 break;
             case 6:
-                printAllUsers(findByDepartment());
+                printAllStudents(findByDepartment());
                 break;
             case 7:
-                printAllUsers(findByGroup());
+                printAllStudents(findByGroup());
                 break;
             case 8:
-                printAllUsers(findByDepartmentAndCourse());
+                printAllStudents(findByDepartmentAndCourse());
                 break;
             case 9:
                 chooseMenuLang();
@@ -108,7 +108,7 @@ public class ViewInfo {
         menu();
     }
 
-    void printAllUsers(ArrayList<Student> students) {
+    void printAllStudents(ArrayList<Student> students) {
         if (mainController.findAll().isEmpty())
             System.out.println(lang.getString("noStudentYet"));
         else {
@@ -159,7 +159,7 @@ public class ViewInfo {
 
     void sortUser() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
-        printAllUsers(BubbleSort.sort(mainController.findAll()));
+        printAllStudents(BubbleSort.sort(mainController.findAll()));
     }
 
     private String writeFieldValidator(String nameField) {

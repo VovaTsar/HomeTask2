@@ -51,6 +51,7 @@ public class Address implements Prototype {
 
     @Override
     public Prototype clone() {
+
         return new Address(city,street,number);
     }
 }

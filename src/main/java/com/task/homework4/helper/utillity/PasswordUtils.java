@@ -10,18 +10,11 @@ import java.util.Base64;
 import java.util.Random;
 
 public final class PasswordUtils {
-    private static final Random RANDOM = new SecureRandom();
-    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ITERATIONS = 10000;
     private static final int KEY_LENGTH = 256;
+    private static final String salt = "key77qwerty11";
 
-    public static String getSalt(int length) {
-        StringBuilder returnValue = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
-        }
-        return new String(returnValue);
-    }
+
     public static byte[] hash(char[] password, byte[] salt) {
         PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
         Arrays.fill(password, Character.MIN_VALUE);
@@ -34,7 +27,8 @@ public final class PasswordUtils {
             spec.clearPassword();
         }
     }
-    public static String generateSecurePassword(String password, String salt) {
+
+    public static String generateSecurePassword(String password) {
         String returnValue = null;
         byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
 
@@ -44,14 +38,9 @@ public final class PasswordUtils {
     }
 
     public static boolean verifyUserPassword(String providedPassword,
-                                             String securedPassword, String salt)
-    {
+                                             String securedPassword) {
         boolean returnValue = false;
-
-        // Generate New secure password with the same salt
-        String newSecurePassword = generateSecurePassword(providedPassword, salt);
-
-        // Check if two passwords are equal
+        String newSecurePassword = generateSecurePassword(providedPassword);
         returnValue = newSecurePassword.equalsIgnoreCase(securedPassword);
 
         return returnValue;

@@ -2,6 +2,8 @@ package com.task.homework4.service;
 
 
 import com.task.homework4.domain.Student;
+import com.task.homework4.exeption.LoginExeption;
+import com.task.homework4.helper.utillity.PasswordUtils;
 import com.task.homework4.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,9 @@ public class StudentServiceImpl implements StudentService {
         if (student == null) {
             throw new IllegalArgumentException(" Student is null");
         }
-        return studentRepository.save(student);
+        String encodePassword = PasswordUtils.generateSecurePassword(student.getPassword());
+        Student studentWithEncode = (Student) student.clone(encodePassword);
+        return studentRepository.save(studentWithEncode);
     }
 
     @Override
@@ -50,9 +54,16 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<Student> login(String email, String password) {
+        String encodePassword = PasswordUtils.generateSecurePassword(password);
 
-        return studentRepository.findByEmail(email);
-    }
+        Student student= studentRepository.findByEmail(email)
+                .orElseThrow(() -> new LoginExeption("Login are not exist"));
+        String userPassword = student.getPassword();
+        if (userPassword.equals(encodePassword)) {
+            return Optional.of(student);
+        }
+        throw new LoginExeption("Password is not correct");
+}
 
     @Override
     public Optional<Student> deleteById(Long id) {
