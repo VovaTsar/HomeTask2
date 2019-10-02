@@ -9,6 +9,9 @@ import com.task.homework4.helper.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -81,10 +84,10 @@ public class ViewInfo {
                 break;
 
             case 2:
-                createUserFromConsole();
+                createStudentFromConsole();
                 break;
             case 3:
-                sortUser();
+                sortStudent();
                 break;
             case 4:
                 System.out.println(login());
@@ -121,11 +124,13 @@ public class ViewInfo {
         }
     }
 
-    void createUserFromConsole() {
+    void createStudentFromConsole() {
 
         String name = writeFieldValidator("name");
         String surname = writeFieldValidator("surname");
-        String email = writeFieldValidator("email");
+         String email = writeFieldValidator("email");
+        //System.out.println(lang.getString("emailStudent"));
+      //  String email = in.nextLine();
         String phoneNumber = writeFieldValidator("phoneNumber");
         String birthday = writeFieldValidator("date");
         Department department = new Department(1L, "dep1");
@@ -134,6 +139,9 @@ public class ViewInfo {
         int course = Integer.parseInt(writeFieldValidator("course"));
         System.out.println(lang.getString("passwordStudent"));
         String password = in.nextLine();
+
+//        javax.validation.ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        Validator validator = factory.getValidator();
 
         Student student = Student.builder()
                 .withName(name)
@@ -150,14 +158,23 @@ public class ViewInfo {
         System.out.println(lang.getString("studentCreated") + "\n");
 
         menu();
+//
+//        Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
+//
+//        if (constraintViolations.size() > 0) {
+//            for (ConstraintViolation<Student> violation : constraintViolations) {
+//                System.out.println(violation.getMessage());
+//            }
+//        } else {
+//            System.out.println("Valid Object");
+//        }
     }
-
     LocalDate splitBirthday(String birthday) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(birthday, formatter);
     }
 
-    void sortUser() {
+    void sortStudent() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
         printAllStudents(BubbleSort.sort(mainController.findAll()));
     }
