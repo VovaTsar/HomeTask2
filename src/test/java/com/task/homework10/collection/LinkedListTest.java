@@ -5,15 +5,16 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static java.util.Optional.*;
+import static java.util.Optional.of;
+import static java.util.Optional.ofNullable;
 import static org.junit.Assert.*;
 
-public class ArrayListTest {
-    ArrayList<Integer> tests;
+public class LinkedListTest {
+    LinkedList<Integer> tests;
 
     @Before
     public void initMyArrayList() {
-        tests = new ArrayList<>();
+        tests = new LinkedList<>();
         tests.add(3);
         tests.add(2);
         tests.add(7);
@@ -78,10 +79,10 @@ public class ArrayListTest {
     public void shouldReturnCorrectIterator() {
         Iterator<Integer> iterator = tests.iterator();
         iterator.next();
-        while(iterator.hasNext())
+        if(iterator.hasNext())
         {
             iterator.remove();
         }
-        assertEquals(1,tests.size());
+        assertEquals(2,tests.size());
     }
 }

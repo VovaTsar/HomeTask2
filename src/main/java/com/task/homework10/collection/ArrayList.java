@@ -29,7 +29,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void add(int index, E e) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + nItems);
         }
         if (nItems >= maxSize) grow();
         for (int i = nItems - 1; i >= index; i--) {
@@ -38,8 +38,9 @@ public class ArrayList<E> implements List<E> {
         array[index] = e;
         nItems++;
     }
+
     @Override
-    public void add( E e) {
+    public void add(E e) {
         if (nItems >= maxSize) {
             grow();
         }
@@ -90,12 +91,10 @@ public class ArrayList<E> implements List<E> {
 
     private void rangeCheck(int index) {
         if (index >= nItems || index < 0)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + nItems);
     }
 
-    private String outOfBoundsMsg(int index) {
-        return "Index: " + index + ", Size: " + nItems;
-    }
+
 
     @Override
     public void clean() {
