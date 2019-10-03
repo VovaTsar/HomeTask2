@@ -1,5 +1,5 @@
 package com.task.homework4.domain;
 
-public interface StudentPrototype {
+public interface StudentPrototype  {
     StudentPrototype clone(String newPassword);
 }

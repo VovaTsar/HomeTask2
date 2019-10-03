@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public final class IPv6Validator implements Validate {
 
-    private final String IPV6_PATTERN = "((^|:)([0-9a-fA-F]{0,4})){1,8}$";
+    private static final String IPV6_PATTERN = "((^|:)([0-9a-fA-F]{0,4})){1,8}$";
 
 
     @Override

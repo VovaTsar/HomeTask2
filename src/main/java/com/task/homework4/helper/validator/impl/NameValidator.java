@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @Component
 public class NameValidator implements Validate {
-    private final String NAME_PATTERN = "[a-zA-Z]{2,}";
+    private static final String NAME_PATTERN = "[a-zA-Z]{2,}";
 
 
 

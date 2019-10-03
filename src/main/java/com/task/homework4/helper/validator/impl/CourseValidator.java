@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @Component
 public class CourseValidator implements Validate {
-    private final String COURSE_PATTERN = "[1-6]{1}";
+    private static final String COURSE_PATTERN = "[1-6]{1}";
 
 
 
