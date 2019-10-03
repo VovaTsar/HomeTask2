@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @Component
 public class PhoneValidator implements Validate {
-    private final String PHONE_PATTERN = "[0-9]{12}";
+    private static final String PHONE_PATTERN = "[0-9]{12}";
 
 
 

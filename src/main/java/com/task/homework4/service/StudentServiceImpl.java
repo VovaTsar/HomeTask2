@@ -2,7 +2,7 @@ package com.task.homework4.service;
 
 
 import com.task.homework4.domain.Student;
-import com.task.homework4.exeption.LoginExeption;
+import com.task.homework4.exeption.LoginException;
 import com.task.homework4.helper.utillity.PasswordUtils;
 import com.task.homework4.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +57,12 @@ public class StudentServiceImpl implements StudentService {
         String encodePassword = PasswordUtils.generateSecurePassword(password);
 
         Student student= studentRepository.findByEmail(email)
-                .orElseThrow(() -> new LoginExeption("Login are not exist"));
+                .orElseThrow(() -> new LoginException("Login are not exist"));
         String userPassword = student.getPassword();
         if (userPassword.equals(encodePassword)) {
             return Optional.of(student);
         }
-        throw new LoginExeption("Password is not correct");
+        throw new LoginException("Password is not correct");
 }
 
     @Override
