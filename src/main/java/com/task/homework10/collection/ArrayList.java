@@ -6,7 +6,7 @@ public class ArrayList<E> implements List<E> {
 
     private int maxSize;
     private Object[] array;
-    private int nItems;
+    private int items;
 
     public ArrayList() {
         this(10);
@@ -18,7 +18,7 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public int size() {
-        return nItems;
+        return items;
     }
 
     @Override
@@ -29,22 +29,22 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void add(int index, E e) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + nItems);
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + items);
         }
-        if (nItems >= maxSize) grow();
-        for (int i = nItems - 1; i >= index; i--) {
+        if (items >= maxSize) grow();
+        for (int i = items - 1; i >= index; i--) {
             array[i + 1] = array[i];
         }
         array[index] = e;
-        nItems++;
+        items++;
     }
 
     @Override
     public void add(E e) {
-        if (nItems >= maxSize) {
+        if (items >= maxSize) {
             grow();
         }
-        array[nItems++] = e;
+        array[items++] = e;
     }
 
     private void grow() {
@@ -54,7 +54,7 @@ public class ArrayList<E> implements List<E> {
         Object[] newArray = new Object[newCapacity];
 
 
-        System.arraycopy(array, 0, newArray, 0, nItems);
+        System.arraycopy(array, 0, newArray, 0, items);
 
         maxSize = newCapacity;
         array = newArray.clone();
@@ -80,9 +80,9 @@ public class ArrayList<E> implements List<E> {
 
         E temp = (E) array[index];
 
-        nItems--;
+        items--;
 
-        for (int i = index; i < nItems; i++) {
+        for (int i = index; i < items; i++) {
             array[i] = array[i + 1];
         }
 
@@ -90,8 +90,8 @@ public class ArrayList<E> implements List<E> {
     }
 
     private void rangeCheck(int index) {
-        if (index >= nItems || index < 0)
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + nItems);
+        if (index >= items || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + items);
     }
 
 
@@ -103,7 +103,7 @@ public class ArrayList<E> implements List<E> {
 
     private void init(int maxSize) {
         this.maxSize = maxSize;
-        this.nItems = 0;
+        this.items = 0;
         this.array = new Object[maxSize];
     }
 
@@ -114,7 +114,7 @@ public class ArrayList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
-                return currentIndex < nItems && array[currentIndex] != null;
+                return currentIndex < items && array[currentIndex] != null;
             }
 
             @Override
@@ -124,13 +124,13 @@ public class ArrayList<E> implements List<E> {
 
             @Override
             public void remove() {
-                if (isEmpty() || currentIndex > nItems - 1 || currentIndex < 0) {
+                if (isEmpty() || currentIndex > items - 1 || currentIndex < 0) {
                     return;
                 }
 
-                nItems--;
+                items--;
 
-                for (int i = currentIndex; i < nItems; i++) {
+                for (int i = currentIndex; i < items; i++) {
                     array[i] = array[i + 1];
                 }
             }

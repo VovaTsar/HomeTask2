@@ -9,7 +9,7 @@ import static java.util.Optional.*;
 import static org.junit.Assert.*;
 
 public class ArrayListTest {
-    ArrayList<Integer> tests;
+   private ArrayList<Integer> tests;
 
     @Before
     public void initMyArrayList() {

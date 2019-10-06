@@ -10,7 +10,7 @@ import static java.util.Optional.ofNullable;
 import static org.junit.Assert.*;
 
 public class LinkedListTest {
-    LinkedList<Integer> tests;
+   private LinkedList<Integer> tests;
 
     @Before
     public void initMyArrayList() {
@@ -24,7 +24,8 @@ public class LinkedListTest {
     public void shouldReturnSizeOfList() {
         assertEquals(3, tests.size());
         tests.add(4);
-        assertEquals(4, tests.size());
+        int expected =4;
+        assertEquals(expected, tests.size());
     }
 
     @Test
@@ -37,7 +38,8 @@ public class LinkedListTest {
     @Test
     public void shouldAddLastItemToList() {
         tests.add(5);
-        assertEquals(of(5), ofNullable(tests.getByIndex(3)));
+        Integer expected =5;
+        assertEquals(expected, tests.getByIndex(3));
         assertEquals(4, tests.size());
     }
 
