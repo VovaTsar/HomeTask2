@@ -1,14 +1,21 @@
 package com.task.homework13;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import java.util.Objects;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
-    private final String name;
-    private final String surname;
-    private  final int age;
-    private  final List<String> skills;
+    private String name;
+    private String surname;
+    private int age;
+    private List<String> skills;
 
+    public User() {
+    }
 
     public User(String name, String surname, int age, List<String> skills) {
         this.name = name;
@@ -16,6 +23,7 @@ public class User {
         this.age = age;
         this.skills = skills;
     }
+
 
     public String getName() {
         return name;
@@ -38,7 +46,7 @@ public class User {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         User that = (User) o;
