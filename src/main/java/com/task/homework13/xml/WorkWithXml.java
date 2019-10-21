@@ -5,18 +5,15 @@ import com.task.homework13.User;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.Arrays;
 
-public class ObjectToXml {
-    public static void main(String[] args) {
-        User user = new User("Vova", "Ts", 20, Arrays.asList("OOP", "Collections", "MySQL", "Spring"));
-        jaxbObjectToXML(user);
-    }
+public class WorkWithXml {
+    private  static  final String FILE ="parserXml.xml";
 
-    private static void jaxbObjectToXML(User user) {
+    public static void objectToXml(User user) {
         try {
-            File file = new File("C:\\Users\\dropt\\Desktop\\parseJson.json");
+            File file = new File(FILE);
             JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -27,6 +24,18 @@ public class ObjectToXml {
 
         } catch (JAXBException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void xmlToObj() {
+        try {
+            File file = new File(FILE);
+            JAXBContext context = JAXBContext.newInstance(User.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            User user = (User) unmarshaller.unmarshal(file);
+            System.out.println(user);
+        } catch (JAXBException ex) {
+            ex.printStackTrace();
         }
     }
 }

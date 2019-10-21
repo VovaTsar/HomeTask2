@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+    <name>Vova</name>
+    <surname>Ts</surname>
+    <age>20</age>
+    <skills>OOP</skills>
+    <skills>Collections</skills>
+    <skills>MySQL</skills>
+    <skills>Spring</skills>
+</user>
