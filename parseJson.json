@@ -1,0 +1,11 @@
+{
+  "name": "Vova",
+  "surname": "Ts",
+  "age": 21,
+  "skills": [
+    "OOP",
+    "Collections",
+    "MySQL",
+    "Spring"
+  ]
+}

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParseFile {
-     private  static  final String FILE ="C:\\Users\\dropt\\Desktop\\parseFile.txt";
+     private  static  final String FILE ="parseFile.txt";
 
     public static void main(String[] args) throws IOException {
         String text = readOneTask(FILE);
